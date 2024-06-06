@@ -18,12 +18,12 @@ def login():
     username = input("Username   : ")
     password = input("Password   : ")
     print("===================================================================")
-    conn   = connect_to_database()
-    cursor = conn.cursor()
+    conn     = connect_to_database()
+    cursor   = conn.cursor()
     cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
     user_by_username = cursor.fetchone()
     cursor.execute("SELECT * FROM users WHERE username=%s AND password=%s", (username, password))
-    user   = cursor.fetchone()
+    user     = cursor.fetchone()
     cursor.close()
     conn.close()
     if user:
@@ -40,8 +40,8 @@ def register():
     username = input("Username   : ")
     password = input("Password   : ")
     print("===================================================================")
-    conn   = connect_to_database()
-    cursor = conn.cursor()
+    conn     = connect_to_database()
+    cursor   = conn.cursor()
     cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
     conn.commit()
     cursor.close()
@@ -50,8 +50,8 @@ def register():
 
 # Fungsi untuk menampilkan tujuan penerbangan dari database dalam bentuk tabel
 def show_flight_destinations():
-    conn   = connect_to_database()
-    cursor = conn.cursor()
+    conn    = connect_to_database()
+    cursor  = conn.cursor()
     cursor.execute("SELECT * FROM flights")
     destinations = cursor.fetchall()
     cursor.close()
@@ -81,16 +81,16 @@ def buy_ticket(user):
         choice          = input("Pilih tujuan penerbangan (ID) : ")
         passenger_count = int(input("Jumlah penumpang              : "))
         print("===================================================================")
-        conn   = connect_to_database()
-        cursor = conn.cursor()
+        conn            = connect_to_database()
+        cursor          = conn.cursor()
         cursor.execute("SELECT * FROM flights WHERE id=%s", (choice,))
-        flight = cursor.fetchone()
+        flight          = cursor.fetchone()
         cursor.close()
-        total_price = int(flight[6]) * passenger_count
+        total_price     = int(flight[6]) * passenger_count
         
-        ticket_code = generate_ticket_code()
+        ticket_code     = generate_ticket_code()
         
-        cursor = conn.cursor()
+        cursor          = conn.cursor()
         cursor.execute("INSERT INTO bookings (user_id, flight_id, ticket_code, airline  , class    , destination, departure_date, departure_time, passengers, price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
                                              (user[0], flight[0], ticket_code, flight[1], flight[2], flight[3]  , flight[4]     , flight[5]     , passenger_count , flight[6]))
 
