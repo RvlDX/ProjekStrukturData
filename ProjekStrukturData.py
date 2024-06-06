@@ -32,7 +32,6 @@ def login():
         print("Password salah.")
     else:
         print("Username tidak ditemukan.")
-        
     return None
 
 # Fungsi untuk registrasi
