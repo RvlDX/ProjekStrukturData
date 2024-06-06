@@ -175,7 +175,7 @@ def main():
         choice = input("Pilih menu : ")
 
         if choice == "1":
-            user = login()
+            user  = login()
             if user:
                 print("Login berhasil.")
                 main_menu(user)
