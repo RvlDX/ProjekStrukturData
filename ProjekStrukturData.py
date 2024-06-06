@@ -110,22 +110,22 @@ def buy_ticket(user):
         print("Harga                      : Rp.", "{:,}".format(int(flight[6])))
         print("Total Harga                : Rp.", "{:,}".format(total_price))
         print("===================================================================")
-        payment = int(input("Masukkan uang bayar        : Rp. "))
-        change = payment - total_price
+        payment     = int(input("Masukkan uang bayar        : Rp. "))
+        change      = payment - total_price
         print("Kembalian                  : Rp.", "{:,}".format(change))
         print("===================================================================")
         
-        another = input("Apakah Anda ingin membeli tiket lagi? (y/n)    : ").lower()
+        another     = input("Apakah Anda ingin membeli tiket lagi? (y/n)    : ").lower()
         if another != 'y':
             break
 
 # Fungsi untuk cek kode pemesanan
 def check_booking_code(user):
     ticket_code = input("Masukkan kode tiket Anda : ")
-    conn   = connect_to_database()
-    cursor = conn.cursor()
+    conn        = connect_to_database()
+    cursor      = conn.cursor()
     cursor.execute("SELECT * FROM bookings WHERE user_id=%s AND ticket_code=%s", (user[0], ticket_code))
-    booking = cursor.fetchone()
+    booking     = cursor.fetchone()
     cursor.close()
     conn.close()
     
@@ -154,7 +154,7 @@ def main_menu(user):
         choice = input("Pilih menu : ")
         print("===================================================================")
 
-        if choice == "1":
+        if choice   == "1":
             buy_ticket(user)
         elif choice == "2":
             check_booking_code(user)
