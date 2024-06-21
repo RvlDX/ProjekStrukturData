@@ -7,9 +7,9 @@ from tabulate import tabulate
 def connect_to_database():
     return mysql.connector.connect(
         host        = "127.0.0.1",
-        user        = "root",           # username database 
-        password    = "",               # password database 
-        database    = "tiket_pesawat"   # nama database
+        user        = "root",           
+        password    = "",              
+        database    = "tiket_pesawat"
     )
 
 # Fungsi untuk login
